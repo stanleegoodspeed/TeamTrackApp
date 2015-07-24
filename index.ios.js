@@ -16,6 +16,7 @@ var {
 } = React;
 
 var cssVar = require('cssVar');
+var CreateRaceComponent = require('./CreateRace');
 
 var MySceneComponent = React.createClass({
   render: function() {
@@ -30,10 +31,28 @@ var MySceneComponent = React.createClass({
             </Text>
           </View>
         </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => save(this.props.myNavigator)}>
+          <View>
+            <Text>
+              Save
+            </Text>
+          </View>
+        </TouchableOpacity>
       </View>
     );
   }
 });
+
+function save(navigator) {
+  // push text input to server
+  // return new raceID
+  // go to next screen
+  console.log('saved to server!');
+  navigator.push(newRandomRoute());
+};
+
+
 
 var NavigationBarRouteMapper = {
 
@@ -92,7 +111,7 @@ var TeamTrackApp = React.createClass({
       <Navigator
         initialRoute={{name: 'My First Scene', index: 0}}
         renderScene={(route, navigator) =>
-          <MySceneComponent myNavigator={navigator}/>    
+          <CreateRaceComponent myNavigator={navigator}/>    
         }
         navigationBar={
             <Navigator.NavigationBar
